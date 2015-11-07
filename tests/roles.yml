@@ -1,0 +1,11 @@
+---
+# roles file for fisheye
+
+- src: https://github.com/pantarei/ansible-role-apt
+  name: apt
+
+- src: https://github.com/pantarei/ansible-role-java
+  name: java
+
+- src: https://github.com/pantarei/ansible-role-fisheye
+  name: fisheye

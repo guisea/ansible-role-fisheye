@@ -1,0 +1,65 @@
+---
+# tasks file for fisheye
+
+- name: create system user
+  user:
+    name={{ fisheye_user }}
+    password={{ fisheye_pass }}
+    home={{ fisheye_home }}
+    system=yes
+    shell=/bin/bash
+  tags: fisheye
+
+- name: prepare directory
+  file:
+    path={{ item }}
+    owner={{ fisheye_user }}
+    group={{ fisheye_user }}
+    state=directory
+    mode=0755
+  with_items:
+    - "{{ fisheye_catalina }}"
+  tags: fisheye
+
+- name: download package
+  get_url:
+    url={{ fisheye_url }}
+    dest={{ fisheye_archive }}
+    sha256sum={{ fisheye_sha256 }}
+  tags: fisheye
+
+- name: unarchive package
+  shell: TMP_DIR=`mktemp -d`; unzip {{ fisheye_archive }} -x -d $TMP_DIR; rsync -av $TMP_DIR/*/ {{ fisheye_catalina }}; chown -Rf {{ fisheye_user }}:{{ fisheye_user }} {{ fisheye_catalina }}
+  args:
+    creates: "{{ fisheye_catalina }}/bin/start.sh"
+  tags: fisheye
+
+- name: copy templates
+  template:
+    src="{{ item }}.j2"
+    dest="/{{ item }}"
+    owner={{ fisheye_user }}
+    group={{ fisheye_user }}
+    mode=0644
+  with_items:
+    - etc/init.d/fisheye
+    - usr/share/fisheye/bin/fisheyectl.sh
+    - usr/share/fisheye/config.xml
+  tags: fisheye
+
+- name: prepare service script
+  file:
+    path="{{ item }}"
+    owner=root
+    group=root
+    state=file
+    mode=0755
+  with_items:
+    - /etc/init.d/fisheye
+    - /usr/share/fisheye/bin/fisheyectl.sh
+  tags: fisheye
+
+- name: enable service
+  service: name=fisheye enabled=yes
+  notify: restart fisheye
+  tags: fisheye

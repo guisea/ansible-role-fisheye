@@ -1,0 +1,5 @@
+---
+# vars file for fisheye
+
+fisheye_catalina: /usr/share/fisheye
+fisheye_home: /var/lib/fisheye

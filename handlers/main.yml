@@ -1,0 +1,5 @@
+---
+# handlers file for fisheye
+
+- name: restart fisheye
+  service: name=fisheye state=restarted

@@ -1,0 +1,10 @@
+---
+# defaults file for fisheye
+
+fisheye_archive: /tmp/fisheye-3.10.1.zip
+fisheye_pass: Pi0oode7
+fisheye_proxy_name:
+fisheye_scheme:
+fisheye_sha256: 884728bbfd31d99a1e23001fb19cf529d0b46add2fa23ea8c6ae69f934e2a8a2
+fisheye_url: https://downloads.atlassian.com/software/fisheye/downloads/fisheye-3.10.1.zip
+fisheye_user: fisheye
