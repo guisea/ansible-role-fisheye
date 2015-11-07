@@ -10,15 +10,15 @@
     shell=/bin/bash
   tags: fisheye
 
-- name: prepare directory
+- name: prepare files
   file:
-    path={{ item }}
-    owner={{ fisheye_user }}
-    group={{ fisheye_user }}
-    state=directory
-    mode=0755
+    path={{ item.path }}
+    owner={{ item.owner }}
+    group={{ item.group }}
+    mode={{ item.mode }}
+    state={{ item.state }}
   with_items:
-    - "{{ fisheye_catalina }}"
+    - { path: "{{ fisheye_catalina }}", owner: "{{ fisheye_user }}", group: "{{ fisheye_user }}", mode: '0755', state: 'directory' }
   tags: fisheye
 
 - name: download package
@@ -36,27 +36,15 @@
 
 - name: copy templates
   template:
-    src="{{ item }}.j2"
-    dest="/{{ item }}"
-    owner={{ fisheye_user }}
-    group={{ fisheye_user }}
-    mode=0644
+    src="{{ item.template }}.j2"
+    dest="/{{ item.template }}"
+    owner={{ item.owner }}
+    group={{ item.group }}
+    mode={{ item.mode }}
   with_items:
-    - etc/init.d/fisheye
-    - usr/share/fisheye/bin/fisheyectl.sh
-    - usr/share/fisheye/config.xml
-  tags: fisheye
-
-- name: prepare service script
-  file:
-    path="{{ item }}"
-    owner=root
-    group=root
-    state=file
-    mode=0755
-  with_items:
-    - /etc/init.d/fisheye
-    - /usr/share/fisheye/bin/fisheyectl.sh
+    - { template: 'etc/init.d/fisheye', owner: 'root', group: 'root', mode: '0755' }
+    - { template: 'usr/share/fisheye/bin/fisheyectl.sh', owner: "{{ fisheye_user }}", group: "{{ fisheye_user }}", mode: '0755' }
+    - { template: 'usr/share/fisheye/config.xml', owner: "{{ fisheye_user }}", group: "{{ fisheye_user }}", mode: '0644' }
   tags: fisheye
 
 - name: enable service
