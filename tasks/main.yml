@@ -8,6 +8,7 @@
     home={{ fisheye_home }}
     system=yes
     shell=/bin/bash
+  notify: restart fisheye
   tags: fisheye
 
 - name: prepare files
@@ -19,6 +20,7 @@
     state={{ item.state }}
   with_items:
     - { path: "{{ fisheye_catalina }}", owner: "{{ fisheye_user }}", group: "{{ fisheye_user }}", mode: '0755', state: 'directory' }
+  notify: restart fisheye
   tags: fisheye
 
 - name: download package
@@ -26,12 +28,14 @@
     url={{ fisheye_url }}
     dest={{ fisheye_archive }}
     sha256sum={{ fisheye_sha256 }}
+  notify: restart fisheye
   tags: fisheye
 
 - name: unarchive package
   shell: TMP_DIR=`mktemp -d`; unzip {{ fisheye_archive }} -x -d $TMP_DIR; rsync -av $TMP_DIR/*/ {{ fisheye_catalina }}; chown -Rf {{ fisheye_user }}:{{ fisheye_user }} {{ fisheye_catalina }}
   args:
     creates: "{{ fisheye_catalina }}/bin/start.sh"
+  notify: restart fisheye
   tags: fisheye
 
 - name: copy templates
@@ -45,6 +49,7 @@
     - { template: 'etc/init.d/fisheye', owner: 'root', group: 'root', mode: '0755' }
     - { template: 'usr/share/fisheye/bin/fisheyectl.sh', owner: "{{ fisheye_user }}", group: "{{ fisheye_user }}", mode: '0755' }
     - { template: 'usr/share/fisheye/config.xml', owner: "{{ fisheye_user }}", group: "{{ fisheye_user }}", mode: '0644' }
+  notify: restart fisheye
   tags: fisheye
 
 - name: enable service
