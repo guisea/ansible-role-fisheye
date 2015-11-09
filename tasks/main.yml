@@ -1,6 +1,25 @@
 ---
 # tasks file for fisheye
 
+- name: stop service if upgrade
+  service: name=fisheye state=stopped
+  when: fisheye_upgrade == true
+  notify: restart fisheye
+  tags: fisheye
+
+- name: remove legacy binary if upgrade
+  file:
+    path={{ item.path }}
+    owner={{ item.owner }}
+    group={{ item.group }}
+    mode={{ item.mode }}
+    state={{ item.state }}
+  with_items:
+    - { path: "{{ fisheye_catalina }}", owner: "{{ fisheye_user }}", group: "{{ fisheye_user }}", mode: '0755', state: 'absent' }
+  when: fisheye_upgrade == true
+  notify: restart fisheye
+  tags: fisheye
+
 - name: create system user
   user:
     name={{ fisheye_user }}
