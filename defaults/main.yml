@@ -2,6 +2,8 @@
 # defaults file for fisheye
 
 fisheye_archive: /tmp/fisheye-3.10.1.zip
+fisheye_catalina: /usr/share/fisheye
+fisheye_home: /var/lib/fisheye
 fisheye_pass: Pi0oode7
 fisheye_proxy_name:
 fisheye_scheme:
