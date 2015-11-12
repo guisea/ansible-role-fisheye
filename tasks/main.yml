@@ -59,15 +59,15 @@
 
 - name: copy templates
   template:
-    src="{{ item.template }}.j2"
-    dest="/{{ item.template }}"
+    src={{ item.src }}
+    dest={{ item.dest }}
     owner={{ item.owner }}
     group={{ item.group }}
     mode={{ item.mode }}
   with_items:
-    - { template: 'etc/init.d/fisheye', owner: 'root', group: 'root', mode: '0755' }
-    - { template: 'usr/share/fisheye/bin/fisheyectl.sh', owner: "{{ fisheye_user }}", group: "{{ fisheye_user }}", mode: '0755' }
-    - { template: 'usr/share/fisheye/config.xml', owner: "{{ fisheye_user }}", group: "{{ fisheye_user }}", mode: '0644' }
+    - { src: 'etc/init.d/fisheye.j2', dest: '/etc/init.d/fisheye', owner: 'root', group: 'root', mode: '0755' }
+    - { src: 'usr/share/fisheye/bin/fisheyectl.sh.j2', dest: "/{{ fisheye_catalina }}/bin/fisheyectl.sh", owner: "{{ fisheye_user }}", group: "{{ fisheye_user }}", mode: '0755' }
+    - { src: 'usr/share/fisheye/config.xml.j2', dest: "/{{ fisheye_catalina }}/fisheye/config.xml", owner: "{{ fisheye_user }}", group: "{{ fisheye_user }}", mode: '0644' }
   notify: restart fisheye
   tags: fisheye
 
