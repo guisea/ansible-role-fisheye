@@ -1,7 +1,7 @@
 ---
 galaxy_info:
   author: Wong Hoi Sing Edison <hswong3i@pantarei-design.com>
-  description: Ansible Role for Fisheye Installation.
+  description: Ansible Role for Atlassian Fisheye Installation.
   company: PantaRei Design
   license: MIT
   min_ansible_version: 1.9
@@ -12,4 +12,4 @@ galaxy_info:
   categories:
   - system
 dependencies:
-  - java
+  - hswong3i.java
