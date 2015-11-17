@@ -4,6 +4,9 @@
 fisheye_archive: /tmp/fisheye-3.10.1.zip
 fisheye_catalina: /usr/share/fisheye
 fisheye_home: /var/lib/fisheye
+fisheye_jvm_maximum_memory: 1024m
+fisheye_jvm_minimum_memory: 512m
+fisheye_jvm_support_recommended_args: -Datlassian.plugins.enable.wait=300
 fisheye_pass: Pi0oode7
 fisheye_proxy_name:
 fisheye_scheme:
