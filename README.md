@@ -51,11 +51,39 @@ Role Variables
 <td align="left">Location for the Fisheye installation directory.</td>
 </tr>
 <tr class="odd">
+<td align="left">fisheye_connector_port</td>
+<td align="left">yes</td>
+<td align="left">8095</td>
+<td align="left"></td>
+<td align="left">Fisheye Apache Tomcat connector port.</td>
+</tr>
+<tr class="even">
 <td align="left">fisheye_home</td>
 <td align="left">yes</td>
 <td align="left">/var/lib/fisheye</td>
 <td align="left"></td>
 <td align="left">Location for the Fisheye home directory.</td>
+</tr>
+<tr class="odd">
+<td align="left">fisheye_jvm_maximum_memory</td>
+<td align="left">yes</td>
+<td align="left">1024m</td>
+<td align="left"></td>
+<td align="left">Fisheye JVM maximum memory usage.</td>
+</tr>
+<tr class="even">
+<td align="left">fisheye_jvm_minimum_memory</td>
+<td align="left">yes</td>
+<td align="left">512m</td>
+<td align="left"></td>
+<td align="left">Fisheye JVM minimum memory usage.</td>
+</tr>
+<tr class="odd">
+<td align="left">fisheye_jvm_support_recommended_args</td>
+<td align="left">no</td>
+<td align="left">-Datlassian.plugins.enable.wait=300</td>
+<td align="left"></td>
+<td align="left">Atlassian Support recommended JVM arguments.</td>
 </tr>
 <tr class="even">
 <td align="left">fisheye_pass</td>
@@ -83,13 +111,20 @@ Role Variables
 <td align="left">Install Fisheye in standalone mode if <code>null</code>, or integrating with Apache using HTTP if <code>http</code>, or integrating with Apache using HTTPS if <code>https</code>.</td>
 </tr>
 <tr class="odd">
+<td align="left">fisheye_server_port</td>
+<td align="left">yes</td>
+<td align="left">8020</td>
+<td align="left"></td>
+<td align="left">Fisheye Apache Tomcat server port.</td>
+</tr>
+<tr class="even">
 <td align="left">fisheye_sha256</td>
 <td align="left">yes</td>
 <td align="left">884728bbfd31d99a1e23001fb19cf529d0b46add2fa23ea8c6ae69f934e2a8a2</td>
 <td align="left"></td>
 <td align="left">Download archive sha256 checksum for cache during (re)install.</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left">fisheye_upgrade</td>
 <td align="left">no</td>
 <td align="left"><code>false</code></td>
@@ -99,14 +134,14 @@ Role Variables
 </ul></td>
 <td align="left">If <code>true</code>, trigger upgrade by stop existing Fisheye service, purge existing Fisheye installation direcoty before normal tasks.</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left">fisheye_url</td>
 <td align="left">yes</td>
 <td align="left">https://downloads.atlassian.com/software/fisheye/downloads/fisheye-3.10.1.zip</td>
 <td align="left"></td>
 <td align="left">URL for download archive.</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left">fisheye_user</td>
 <td align="left">yes</td>
 <td align="left">fisheye</td>
