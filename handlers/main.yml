@@ -1,5 +1,5 @@
 ---
-# handlers file for fisheye
+# handlers file for hswong3i.fisheye
 
 - name: restart fisheye
   service: name=fisheye state=restarted

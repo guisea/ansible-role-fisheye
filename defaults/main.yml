@@ -1,5 +1,5 @@
 ---
-# defaults file for fisheye
+# defaults file for hswong3i.fisheye
 
 fisheye_archive: /tmp/fisheye-3.10.1.zip
 fisheye_catalina: /usr/share/fisheye

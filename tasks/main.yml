@@ -1,5 +1,5 @@
 ---
-# tasks file for fisheye
+# tasks file for hswong3i.fisheye
 
 - name: stop service if upgrade
   service: name=fisheye state=stopped
