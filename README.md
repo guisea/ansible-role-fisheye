@@ -161,7 +161,6 @@ Example Playbook
 
     - hosts: servers
       roles:
-        - { role: hswong3i.java }
         - { role: hswong3i.fisheye, fisheye_user: 'fisheye', fisheye_pass: 'Pi0oode7', fisheye_upgrade: 'false' }
 
 License
