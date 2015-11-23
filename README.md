@@ -2,9 +2,9 @@ Ansible Role for Fisheye
 ========================
 
 [![Build Status](https://travis-ci.org/pantarei/ansible-role-fisheye.svg?branch=master)](https://travis-ci.org/pantarei/ansible-role-fisheye)
-[![GitHub tag](https://img.shields.io/github/tag/pantarei/ansible-role-fisheye.svg)](https://github.com/pantarei/ansible-role-fisheye)
-[![GitHub license](https://img.shields.io/github/license/pantarei/ansible-role-fisheye.svg)](https://github.com/pantarei/ansible-role-fisheye/blob/master/LICENSE)
-[![Ansible Role](https://img.shields.io/ansible/role/5988.svg)](https://galaxy.ansible.com/detail#/role/5988)
+ [![GitHub tag](https://img.shields.io/github/tag/pantarei/ansible-role-fisheye.svg)](https://github.com/pantarei/ansible-role-fisheye)
+ [![GitHub license](https://img.shields.io/github/license/pantarei/ansible-role-fisheye.svg)](https://github.com/pantarei/ansible-role-fisheye/blob/master/LICENSE)
+ [![Ansible Role](https://img.shields.io/ansible/role/5988.svg)](https://galaxy.ansible.com/detail#/role/5988)
 
 Ansible Role for Atlassian Fisheye Installation.
 
