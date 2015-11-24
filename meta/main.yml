@@ -13,3 +13,4 @@ galaxy_info:
   - system
 dependencies:
   - hswong3i.java
+  - hswong3i.ufw

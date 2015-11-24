@@ -155,6 +155,7 @@ Dependencies
 ------------
 
 -   [hswong3i.java](https://galaxy.ansible.com/detail#/role/5971)
+-   [hswong3i.ufw](https://galaxy.ansible.com/detail#/role/6153)
 
 Example Playbook
 ----------------
