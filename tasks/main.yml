@@ -75,3 +75,14 @@
   service: name=fisheye enabled=yes
   notify: restart fisheye
   tags: hswong3i.fisheye
+
+- name: enable incomming connection
+  ufw:
+    to_port={{ item }}
+    proto=tcp
+    rule=allow
+  with_items:
+    - "{{ fisheye_connector_port }}"
+    - "{{ fisheye_server_port }}"
+  notify: restart fisheye
+  tags: hswong3i.fisheye
