@@ -20,12 +20,20 @@
   notify: restart fisheye
   tags: hswong3i.fisheye
 
-- name: create system user
+- name: apt-get install
+  apt:
+    name="{{ item }}"
+    state=latest
+  with_items:
+    - ufw
+  notify: restart fisheye
+  tags: hswong3i.fisheye
+
+- name: create user
   user:
     name={{ fisheye_user }}
     password={{ fisheye_pass }}
     home={{ fisheye_home }}
-    system=yes
     shell=/bin/bash
   notify: restart fisheye
   tags: hswong3i.fisheye
