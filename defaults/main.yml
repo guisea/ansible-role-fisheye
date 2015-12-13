@@ -9,8 +9,8 @@ fisheye_jvm_maximum_memory: 1024m
 fisheye_jvm_minimum_memory: 512m
 fisheye_jvm_support_recommended_args: -Datlassian.plugins.enable.wait=300
 fisheye_pass: Pi0oode7
-fisheye_proxy_name:
-fisheye_scheme:
+fisheye_proxy_name: ~
+fisheye_scheme: ~
 fisheye_server_port: 8059
 fisheye_sha256: c27d267d8c10ce32edbdb8286b39f12af601237f7d64c3e3cd5dc683d20a8e18
 fisheye_upgrade: false
