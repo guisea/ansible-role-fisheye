@@ -4,6 +4,7 @@
 fisheye_archive: /tmp/fisheye-3.10.2.zip
 fisheye_catalina: /usr/share/fisheye
 fisheye_connector_port: 8060
+fisheye_hash_salt: 7a19759dc774f9accbe51540e80e155f31290517417fd6960a27f891877dd272
 fisheye_home: /var/lib/fisheye
 fisheye_jvm_maximum_memory: 1024m
 fisheye_jvm_minimum_memory: 512m
