@@ -2,7 +2,7 @@
 <!-- {{ ansible_managed }} -->
 <config control-bind="127.0.0.1:{{ fisheye_server_port }}" version="1.0">
     <!-- see example-config.xml and config.xsd for more documentation -->
-    <web-server>
+    <web-server context="{{ fisheye_context_path or '' }}">
         <http bind=":{{ fisheye_connector_port }}"{% if fisheye_proxy_name and fisheye_scheme in ["http", "https"] %} proxy-host="{{ fisheye_proxy_name }}"{% if fisheye_scheme == "http" %} proxy-scheme="http" proxy-port="80"{% elif fisheye_scheme == "https" %} proxy-scheme="https" proxy-port="443"{% endif %}{% endif %}/>
     </web-server>
     <security allow-anon="true" allow-cru-anon="true"/>
