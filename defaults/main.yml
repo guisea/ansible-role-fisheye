@@ -1,7 +1,7 @@
 ---
 # defaults file for hswong3i.fisheye
 
-fisheye_archive: /tmp/fisheye-3.10.2.zip
+fisheye_archive: /tmp/fisheye-3.10.3.zip
 fisheye_catalina: /usr/share/fisheye
 fisheye_connector_port: 8060
 fisheye_context_path: ~
@@ -14,7 +14,7 @@ fisheye_pass: Pi0oode7
 fisheye_proxy_name: ~
 fisheye_scheme: ~
 fisheye_server_port: 8059
-fisheye_sha256: c27d267d8c10ce32edbdb8286b39f12af601237f7d64c3e3cd5dc683d20a8e18
+fisheye_sha256: 50ce56c0aa9919495f23ed7f4ff00c38889239995dfcc9ea9e07338ea2b506bd
 fisheye_upgrade: false
-fisheye_url: https://downloads.atlassian.com/software/fisheye/downloads/fisheye-3.10.2.zip
+fisheye_url: https://downloads.atlassian.com/software/fisheye/downloads/fisheye-3.10.3.zip
 fisheye_user: fisheye
