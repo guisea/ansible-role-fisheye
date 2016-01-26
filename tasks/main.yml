@@ -25,7 +25,7 @@
     name={{ item.name }}
     state={{ item.state }}
   with_items:
-    - { name: 'ufw', state: 'latest' }
+    - { state: 'latest', name: 'ufw' }
   notify: restart fisheye
   tags: hswong3i.fisheye
 
