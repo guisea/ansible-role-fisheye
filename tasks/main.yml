@@ -1,25 +1,6 @@
 ---
 # tasks file for hswong3i.fisheye
 
-- name: stop service if upgrade
-  service: name=fisheye state=stopped
-  when: fisheye_upgrade == true
-  notify: restart fisheye
-  tags: hswong3i.fisheye
-
-- name: remove legacy binary if upgrade
-  file:
-    path={{ item.path }}
-    owner={{ item.owner }}
-    group={{ item.group }}
-    mode={{ item.mode }}
-    state={{ item.state }}
-  with_items:
-    - { path: "{{ fisheye_catalina }}", owner: "{{ fisheye_user }}", group: "{{ fisheye_user }}", mode: '0755', state: 'absent' }
-  when: fisheye_upgrade == true
-  notify: restart fisheye
-  tags: hswong3i.fisheye
-
 - name: apt-get install
   apt:
     name={{ item.name }}
@@ -53,13 +34,12 @@
 - name: download package
   get_url:
     url={{ fisheye_url }}
-    dest={{ fisheye_archive }}
-    sha256sum={{ fisheye_sha256 }}
-  notify: restart fisheye
+    dest="/tmp/{{ fisheye_archive }}"
+    checksum={{ fisheye_checksum }}
   tags: hswong3i.fisheye
 
 - name: unarchive package
-  shell: TMP_DIR=`mktemp -d`; unzip {{ fisheye_archive }} -x -d $TMP_DIR; rsync -av $TMP_DIR/*/ {{ fisheye_catalina }}; chown -Rf {{ fisheye_user }}:{{ fisheye_user }} {{ fisheye_catalina }}
+  shell: TMP_DIR=`mktemp -d`; unzip /tmp/{{ fisheye_archive }} -x -d $TMP_DIR; rsync -av $TMP_DIR/*/ {{ fisheye_catalina }}; chown -Rf {{ fisheye_user }}:{{ fisheye_user }} {{ fisheye_catalina }}
   args:
     creates: "{{ fisheye_catalina }}/bin/start.sh"
   notify: restart fisheye
