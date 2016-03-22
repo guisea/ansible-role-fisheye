@@ -1,9 +1,9 @@
 ---
 # defaults file for hswong3i.fisheye
 
-fisheye_archive: fisheye-4.0.1.zip
+fisheye_archive: fisheye-4.0.2.zip
 fisheye_catalina: /usr/share/fisheye
-fisheye_checksum: "sha256:cf7948370628ebe937070b98dec1d5859d00e4831da6d3e87d21771c049b7458"
+fisheye_checksum: "sha256:6674c7d580132133b816ce90668f39dc4212109b071b16f08260324a05563a98"
 fisheye_connector_port: 8060
 fisheye_context_path: ~
 fisheye_hash_salt: es8Aegeech9Oot6i
