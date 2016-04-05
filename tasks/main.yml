@@ -3,43 +3,56 @@
 
 - name: apt-get install
   apt:
-    name={{ item.name }}
-    state={{ item.state }}
+    name: "{{ item.name }}"
+    state: "{{ item.state }}"
   with_items:
-    - { state: 'latest', name: 'ufw' }
+    - { state: "latest", name: "ufw" }
+  notify: restart fisheye
+  tags: hswong3i.fisheye
+
+- name: create group
+  group:
+    name: "{{ fisheye_user }}"
+    gid: "{{ fisheye_gid | default(None) or omit }}"
   notify: restart fisheye
   tags: hswong3i.fisheye
 
 - name: create user
   user:
-    name={{ fisheye_user }}
-    password={{ fisheye_pass | password_hash('sha512', fisheye_hash_salt) }}
-    home={{ fisheye_home }}
-    shell=/bin/bash
+    name: "{{ fisheye_user }}"
+    password: "{{ fisheye_pass | password_hash('sha512', fisheye_hash_salt) }}"
+    home: "{{ fisheye_home }}"
+    group: "{{ fisheye_user }}"
+    uid: "{{ fisheye_uid | default(None) or omit }}"
+    shell: "/bin/bash"
   notify: restart fisheye
   tags: hswong3i.fisheye
 
 - name: prepare files
   file:
-    path={{ item.path }}
-    owner={{ item.owner }}
-    group={{ item.group }}
-    mode={{ item.mode }}
-    state={{ item.state }}
+    path: "{{ item.path }}"
+    owner: "{{ item.owner }}"
+    group: "{{ item.group }}"
+    mode: "{{ item.mode }}"
+    state: "{{ item.state }}"
   with_items:
-    - { path: "{{ fisheye_catalina }}", owner: "{{ fisheye_user }}", group: "{{ fisheye_user }}", mode: '0755', state: 'directory' }
+    - { path: "{{ fisheye_catalina }}", owner: "{{ fisheye_user }}", group: "{{ fisheye_user }}", mode: "0755", state: "directory" }
   notify: restart fisheye
   tags: hswong3i.fisheye
 
 - name: download package
   get_url:
-    url={{ fisheye_url }}
-    dest="/tmp/{{ fisheye_archive }}"
-    checksum={{ fisheye_checksum }}
+    url: "{{ fisheye_url }}"
+    dest: "/tmp/{{ fisheye_archive }}"
+    checksum: "{{ fisheye_checksum }}"
   tags: hswong3i.fisheye
 
 - name: unarchive package
-  shell: TMP_DIR=`mktemp -d`; unzip /tmp/{{ fisheye_archive }} -x -d $TMP_DIR; rsync -av $TMP_DIR/*/ {{ fisheye_catalina }}; chown -Rf {{ fisheye_user }}:{{ fisheye_user }} {{ fisheye_catalina }}
+  shell: |
+    TMP_DIR=`mktemp -d`
+    unzip /tmp/{{ fisheye_archive }} -x -d $TMP_DIR
+    rsync -av $TMP_DIR/*/ {{ fisheye_catalina }}
+    chown -Rf {{ fisheye_user }}:{{ fisheye_user }} {{ fisheye_catalina }}
   args:
     creates: "{{ fisheye_catalina }}/bin/start.sh"
   notify: restart fisheye
@@ -47,30 +60,32 @@
 
 - name: copy templates
   template:
-    src={{ item.src }}
-    dest={{ item.dest }}
-    owner={{ item.owner }}
-    group={{ item.group }}
-    mode={{ item.mode }}
+    src: "{{ item.src }}"
+    dest: "{{ item.dest }}"
+    owner: "{{ item.owner }}"
+    group: "{{ item.group }}"
+    mode: "{{ item.mode }}"
   with_items:
-    - { src: 'etc/init.d/fisheye.j2', dest: '/etc/init.d/fisheye', owner: 'root', group: 'root', mode: '0755' }
-    - { src: 'usr/share/fisheye/bin/fisheyectl.sh.j2', dest: "{{ fisheye_catalina }}/bin/fisheyectl.sh", owner: "{{ fisheye_user }}", group: "{{ fisheye_user }}", mode: '0755' }
-    - { src: 'usr/share/fisheye/config.xml.j2', dest: "{{ fisheye_catalina }}/config.xml", owner: "{{ fisheye_user }}", group: "{{ fisheye_user }}", mode: '0644' }
+    - { src: "etc/init.d/fisheye.j2", dest: "/etc/init.d/fisheye", owner: "root", group: "root", mode: "0755" }
+    - { src: "usr/share/fisheye/bin/fisheyectl.sh.j2", dest: "{{ fisheye_catalina }}/bin/fisheyectl.sh", owner: "{{ fisheye_user }}", group: "{{ fisheye_user }}", mode: "0755" }
+    - { src: "usr/share/fisheye/config.xml.j2", dest: "{{ fisheye_catalina }}/config.xml", owner: "{{ fisheye_user }}", group: "{{ fisheye_user }}", mode: "0644" }
   notify: restart fisheye
   tags: hswong3i.fisheye
 
 - name: enable service
-  service: name=fisheye enabled=yes
+  service:
+    name: "fisheye"
+    enabled: "yes"
   notify: restart fisheye
   tags: hswong3i.fisheye
 
 - name: enable incomming connection
   ufw:
-    to_port={{ item.to_port }}
-    proto={{ item.proto }}
-    rule={{ item.rule }}
+    to_port: "{{ item.to_port }}"
+    proto: "{{ item.proto }}"
+    rule: "{{ item.rule }}"
   with_items:
-    - { to_port: "{{ fisheye_connector_port }}", proto: 'tcp', rule: 'allow' }
-    - { to_port: "{{ fisheye_server_port }}", proto: 'tcp', rule: 'allow' }
+    - { to_port: "{{ fisheye_connector_port }}", proto: "tcp", rule: "allow" }
+    - { to_port: "{{ fisheye_server_port }}", proto: "tcp", rule: "allow" }
   notify: restart fisheye
   tags: hswong3i.fisheye
