@@ -6,6 +6,7 @@ fisheye_catalina: /usr/share/fisheye
 fisheye_checksum: "sha256:e220bd4d5258331d8f1ee7615742f2e2b45b6a2ed304f7ec94d5a7c01978d58c"
 fisheye_connector_port: 8060
 fisheye_context_path: ~
+fisheye_gid: ~
 fisheye_hash_salt: es8Aegeech9Oot6i
 fisheye_home: /var/lib/fisheye
 fisheye_jvm_maximum_memory: 1024m
@@ -15,5 +16,6 @@ fisheye_pass: Pi0oode7
 fisheye_proxy_name: ~
 fisheye_scheme: ~
 fisheye_server_port: 8059
+fisheye_uid: ~
 fisheye_url: "https://downloads.atlassian.com/software/fisheye/downloads/{{ fisheye_archive }}"
 fisheye_user: fisheye

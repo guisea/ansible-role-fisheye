@@ -10,11 +10,20 @@
   notify: restart fisheye
   tags: hswong3i.fisheye
 
+- name: create group
+  group:
+    name: "{{ fisheye_user }}"
+    gid: "{{ fisheye_gid | default(None) or omit }}"
+  notify: restart fisheye
+  tags: hswong3i.fisheye
+
 - name: create user
   user:
     name: "{{ fisheye_user }}"
     password: "{{ fisheye_pass | password_hash('sha512', fisheye_hash_salt) }}"
     home: "{{ fisheye_home }}"
+    group: "{{ fisheye_user }}"
+    uid: "{{ fisheye_uid | default(None) or omit }}"
     shell: "/bin/bash"
   notify: restart fisheye
   tags: hswong3i.fisheye
