@@ -74,8 +74,8 @@
 
 - name: enable service
   service:
-    name: fisheye
-    enabled: yes
+    name: "fisheye"
+    enabled: "yes"
   notify: restart fisheye
   tags: hswong3i.fisheye
 
