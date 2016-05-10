@@ -4,4 +4,7 @@
 - hosts: localhost
   remote_user: root
   roles:
-    - ansible-role-fisheye
+    - role: ansible-role-fisheye
+      fisheye_hash_salt: "es8Aegeech9Oot6i"
+      fisheye_pass: "Pi0oode7"
+      fisheye_user: "fisheye"

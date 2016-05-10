@@ -1,21 +1,24 @@
 ---
 # defaults file for hswong3i.fisheye
 
-fisheye_archive: "fisheye-4.0.3.zip"
+# required variables
+fisheye_gid: ~
+fisheye_hash_salt: ~
+fisheye_pass: ~
+fisheye_uid: ~
+fisheye_user: ~
+
+# optional variables with default
+fisheye_archive: "fisheye-4.0.4.zip"
 fisheye_catalina: "/usr/share/fisheye"
-fisheye_checksum: "sha256:e220bd4d5258331d8f1ee7615742f2e2b45b6a2ed304f7ec94d5a7c01978d58c"
+fisheye_checksum: "sha256:1f925f70459c532bcfd2749ccace1f59bbaf48939e09e26a64b75eaa876ee5d8"
 fisheye_connector_port: "8060"
 fisheye_context_path: ~
-fisheye_gid: ~
-fisheye_hash_salt: "es8Aegeech9Oot6i"
 fisheye_home: "/var/lib/fisheye"
 fisheye_jvm_maximum_memory: "1024m"
 fisheye_jvm_minimum_memory: "512m"
 fisheye_jvm_support_recommended_args: "-Datlassian.plugins.enable.wait=300"
-fisheye_pass: "Pi0oode7"
 fisheye_proxy_name: ~
 fisheye_scheme: ~
 fisheye_server_port: "8059"
-fisheye_uid: ~
 fisheye_url: "https://downloads.atlassian.com/software/fisheye/downloads/{{ fisheye_archive }}"
-fisheye_user: "fisheye"
