@@ -1,4 +1,5 @@
 ---
 # roles file for hswong3i.fisheye
 
+- src: hswong3i.java
 - src: hswong3i.fisheye
