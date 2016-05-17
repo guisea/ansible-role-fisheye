@@ -14,7 +14,6 @@ before_install:
 
 install:
   - git clone https://github.com/pantarei/ansible-role-java.git ../hswong3i.java
-  - git clone https://github.com/pantarei/ansible-role-fisheye.git ../hswong3i.fisheye
 
 script:
   - sudo ansible-playbook tests/test.yml -i tests/hosts --syntax-check
