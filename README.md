@@ -80,7 +80,7 @@ Role Variables
 <tr class="odd">
 <td>fisheye_hash_salt</td>
 <td>yes</td>
-<td><a href="https://github.com/pantarei/ansible-role-fisheye/blob/master/defaults/main.yml">defaults/main.yml</a></td>
+<td></td>
 <td></td>
 <td>Specific password hash salt for sha512.</td>
 </tr>
@@ -115,7 +115,7 @@ Role Variables
 <tr class="even">
 <td>fisheye_pass</td>
 <td>yes</td>
-<td>Pi0oode7</td>
+<td></td>
 <td></td>
 <td>Password for Fisheye system user.</td>
 </tr>
@@ -161,7 +161,7 @@ Role Variables
 <tr class="even">
 <td>fisheye_user</td>
 <td>yes</td>
-<td>fisheye</td>
+<td></td>
 <td></td>
 <td>Username for Fisheye system user.</td>
 </tr>
@@ -176,9 +176,12 @@ No additional role dependencies.
 Example Playbook
 ----------------
 
-    - hosts: servers
+    - hosts: all
       roles:
-        - { role: hswong3i.fisheye }
+        - role: hswong3i.fisheye
+          fisheye_hash_salt: "es8Aegeech9Oot6i"
+          fisheye_pass: "Pi0oode7"
+          fisheye_user: "fisheye"
 
 License
 -------
