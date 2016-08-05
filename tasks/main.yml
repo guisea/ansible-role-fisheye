@@ -23,13 +23,13 @@
 
 - name: prepare files
   file:
-    path: "{{ item.path }}"
+    dest: "{{ item.dest }}"
     owner: "{{ item.owner }}"
     group: "{{ item.group }}"
     mode: "{{ item.mode }}"
     state: "{{ item.state }}"
   with_items:
-    - { path: "{{ fisheye_catalina }}", owner: "{{ fisheye_user }}", group: "{{ fisheye_user }}", mode: "0755", state: "directory" }
+    - { dest: "{{ fisheye_catalina }}", owner: "{{ fisheye_user }}", group: "{{ fisheye_user }}", mode: "0755", state: "directory" }
   notify: restart fisheye
   tags: hswong3i.fisheye
 
