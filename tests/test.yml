@@ -4,5 +4,5 @@
 - hosts: localhost
   remote_user: root
   roles:
-    - hswong3i.java
+    - ansible-role-java
     - ansible-role-fisheye
