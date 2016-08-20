@@ -35,9 +35,11 @@
 
 - name: download package
   get_url:
-    url: "{{ fisheye_url }}"
-    dest: "/tmp/{{ fisheye_archive }}"
-    checksum: "{{ fisheye_checksum }}"
+    url: "{{ item.url }}"
+    dest: "{{ item.dest }}"
+    checksum: "{{ item.checksum }}"
+  with_items:
+    - { url: "{{ fisheye_url }}", dest: "/tmp/{{ fisheye_archive }}", checksum: "{{ fisheye_checksum }}" }
   tags: hswong3i.fisheye
 
 - name: unarchive package
@@ -67,7 +69,9 @@
 
 - name: enable service
   service:
-    name: "fisheye"
-    enabled: "yes"
+    name: "{{ item.name }}"
+    enabled: "{{ item.enabled }}"
+  with_items:
+    - { name: "fisheye", enabled: "yes" }
   notify: restart fisheye
   tags: hswong3i.fisheye

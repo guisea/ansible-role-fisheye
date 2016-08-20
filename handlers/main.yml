@@ -3,5 +3,7 @@
 
 - name: restart fisheye
   service:
-    name: "fisheye"
-    state: "restarted"
+    name: "{{ item.name }}"
+    state: "{{ item.state }}"
+  with_items:
+    - { name: "fisheye", state: "restarted" }
