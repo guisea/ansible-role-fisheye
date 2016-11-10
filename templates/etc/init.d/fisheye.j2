@@ -2,6 +2,9 @@
 
 # {{ ansible_managed }}
 
+{% if ansible_os_family == 'RedHat' and ansible_distribution_version == '7' %}
+SYSTEMCTL_SKIP_REDIRECT=true
+{% endif %}
 ### BEGIN INIT INFO
 # Provides:          fisheye
 # Required-Start:    $remote_fs $syslog
