@@ -74,5 +74,5 @@
   service:
     name: "fisheye"
     enabled: "yes"
-  notify: restart fisheye
+    state: restarted
   tags: hswong3i.fisheye
