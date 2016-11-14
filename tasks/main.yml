@@ -33,17 +33,17 @@
   notify: restart fisheye
   tags: hswong3i.fisheye
 
-- name: copy package
-  copy:
-    src: "{{ fisheye_archive }}"
-    dest: "/tmp/{{ fisheye_archive }}"
-
-#- name: download package
-#  get_url:
-#    url: "{{ fisheye_url }}"
+#- name: copy package
+#  copy:
+#    src: "{{ fisheye_archive }}"
 #    dest: "/tmp/{{ fisheye_archive }}"
-#    checksum: "{{ fisheye_checksum }}"
-#  tags: hswong3i.fisheye
+
+- name: download package
+  get_url:
+    url: "{{ fisheye_url }}"
+    dest: "/tmp/{{ fisheye_archive }}"
+    checksum: "{{ fisheye_checksum }}"
+  tags: hswong3i.fisheye
 
 - name: unarchive package
   shell: |
