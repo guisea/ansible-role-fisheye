@@ -53,6 +53,17 @@
     chown -Rf {{ fisheye_user }}:{{ fisheye_user }} {{ fisheye_catalina }}
   args:
     creates: "{{ fisheye_catalina }}/bin/start.sh"
+  when: not fisheye_upgrade
+  notify: restart fisheye
+  tags: hswong3i.fisheye
+
+- name: unarchive package
+  shell: |
+    TMP_DIR=`mktemp -d`
+    unzip /tmp/{{ fisheye_archive }} -x -d $TMP_DIR
+    rsync -av $TMP_DIR/*/ {{ fisheye_catalina }}
+    chown -Rf {{ fisheye_user }}:{{ fisheye_user }} {{ fisheye_catalina }}
+  when: fisheye_upgrade
   notify: restart fisheye
   tags: hswong3i.fisheye
 

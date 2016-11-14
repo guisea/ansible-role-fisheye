@@ -22,3 +22,4 @@ fisheye_proxy_name: ~
 fisheye_scheme: ~
 fisheye_server_port: "8059"
 fisheye_url: "https://www.atlassian.com/software/fisheye/downloads/binary/{{ fisheye_archive }}"
+fisheye_upgrade: false
